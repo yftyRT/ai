@@ -1,0 +1,13 @@
+# For LOCAL smoke tests only (needs an NVIDIA GPU + nvidia container toolkit). On RunPod you deploy the image as a Pod, not with compose.
+services:
+  factory:
+    build: .
+    env_file: .env
+    volumes: ["factory-data:/workspace"]
+    deploy:
+      resources:
+        reservations:
+          devices: [{driver: nvidia, count: 1, capabilities: [gpu]}]
+    restart: unless-stopped
+volumes:
+  factory-data:

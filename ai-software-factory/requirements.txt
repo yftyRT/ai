@@ -1,0 +1,7 @@
+# Runtime deps of the factory process. The model server (vLLM) is installed separately
+# (see Dockerfile / scripts/start_vllm.sh) so its CUDA stack never conflicts with these.
+# Versions marked (tested) were present when the test-suite ran; aiogram could NOT be installed
+# in the build sandbox (PyPI blocked) so its pin is the series I expect to work - verify with
+#   pip install -r requirements.txt && python -c "import aiogram; print(aiogram.__version__)"
+pydantic==2.13.5   # (tested)
+aiogram>=3.13,<4   # NOT tested here; pin exactly after first successful install (pip freeze)
